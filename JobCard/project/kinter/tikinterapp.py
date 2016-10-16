@@ -378,6 +378,8 @@ def popupmsg(msg):
 def animate(i):
     global refreshRate
     global DatCounter
+    global a
+    global a2
 
     if chartLoad:
         if paneCount == 1:

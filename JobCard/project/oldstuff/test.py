@@ -1,35 +1,107 @@
-import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
+import tkinter as tk
+import matplotlib
+# import urllib
+# import json
+# import matplotlib.animation as animation
+# import matplotlib.dates as mdates
+# import matplotlib.ticker as mticker
+# import pandas as pd
+# import numpy as np
+
+# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+# from tkinter import ttk
+from matplotlib import style
+# from matplotlib import pyplot as plt
+# from matplotlib.figure import Figure
+
+matplotlib.use("TkAgg")
+
+LARGE_FONT = ("Verdana", 12)
+
+style.use("ggplot")
 
 
-class Example(QMainWindow):
-    def __init__(self):
-        super().__init__()
+# f = plt.figure()
 
-       # textEdit = QTextEdit()
-        #self.setCentralWidget(textEdit)
+# Creating the main window
+class SeaofBTCapp(tk.Tk):
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
 
-        exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
-        exitAction.setShortcut('Ctrl+Q')
-        exitAction.setStatusTip('Exit application')
-        exitAction.triggered.connect(self.close)
+        tk.Tk.wm_title(self, "Sea Of BTC client")
+        # tk.Tk.iconbitmap(self, default="gbl.ico")
+        #
+        container = tk.Frame(self)
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
 
-        self.statusBar()
+        self.frames = {}
 
-        menubar = self.menuBar()
-        fileMenu = menubar.addMenu('&File')
-        fileMenu.addAction(exitAction)
+        # for F in(StartPage, PageOne, PageTwo):
+        #         frame = F(container, self)
+        #         self.frames[F] = frame
+        #         frame.grid(row=0, column=0, sticky="nsew")
 
-        toolbar = self.addToolBar('Exit')
-        toolbar.addAction(exitAction)
+        # self.show_frame(StartPage)
 
-        self.setGeometry(300, 300, 350, 250)
-        self.setWindowTitle('Main window')
-        self.show()
+    def show_frame(self, cont):
+        frame = self.frames[cont]
+        frame.tkraise()
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Example()
-    sys.exit(app.exec_())
+# Load the StartPage in Main App
+# plus create the start page
+# class StartPage(tk.Frame):
+#
+#     def __init__(self, parent, controller):
+#         tk.Frame.__init__(self, parent)
+#         label = tk.Label(self, text="Start Page", font=LARGE_FONT)
+#         label.pack(pady=10, padx=10)
+#
+#         button1 = tk.Button(self, text="Visit Page 1",
+#                             command=lambda: controller.show_frame(PageOne))
+#         button1.pack()
+#
+#         button2 = tk.Button(self, text="Visit Page 2",
+#                             command=lambda: controller.show_frame(PageTwo))
+#         button2.pack()
+#
+#
+# class PageOne(tk.Frame):
+#
+#     def __init__(self, parent, controller):
+#         tk.Frame.__init__(self, parent)
+#         label = tk.Label(self, text="Page One", font=LARGE_FONT)
+#         label.pack(pady=10, padx=10)
+#
+#         button1 = tk.Button(self, text="Back to Home!",
+#                             command=lambda: controller.show_frame(StartPage))
+#         button1.pack()
+#
+#         button2 = tk.Button(self, text="Page Two",
+#                             command=lambda: controller.show_frame(PageTwo))
+#         button2.pack()
+#
+#
+# class PageTwo(tk.Frame):
+#
+#     def __init__(self, parent, controller):
+#         tk.Frame.__init__(self, parent)
+#         label = tk.Label(self, text="Page Two", font=LARGE_FONT)
+#         label.pack(pady=10, padx=10)
+#
+#         button1 = tk.Button(self, text="Back to Home!",
+#                             command=lambda: controller.show_frame(StartPage))
+#         button1.pack()
+#
+#         button2 = tk.Button(self, text="Page One",
+#                             command=lambda: controller.show_frame(PageOne))
+#         button2.pack()
+
+
+app = SeaofBTCapp()
+app.geometry("280x250+180+80")
+app.mainloop()
+
+
